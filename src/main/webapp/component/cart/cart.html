@@ -1,0 +1,23 @@
+<table class="table table-stripped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Product Name</th>
+        <th>Qty</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="cart in cartList">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ cart.productName }}</td>
+        <td>
+            <input ng-model="cart.qty" type="number"/>
+        </td>
+        <td>
+            <button ng-click="update(cart)" class="btn">Update</button>
+            <button ng-click="remove(cart)" class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

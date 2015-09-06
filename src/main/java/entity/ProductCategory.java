@@ -1,9 +1,14 @@
 package entity;
 
+import listener.TimestampEntityListener;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
+@EntityListeners(TimestampEntityListener.class)
+@Cacheable
 public class ProductCategory {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +18,19 @@ public class ProductCategory {
 
     @OneToMany(mappedBy = "category")
     private Set<Product> productSet;
+
+    @Temporal(TemporalType.TIME)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIME)
+    private Date updatedAt;
+
+    public ProductCategory() {
+    }
+
+    public ProductCategory(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

@@ -8,11 +8,11 @@ public class ProductDTO {
 
     private int price;
 
-    private String category;
+    private ProductCategoryDTO category;
 
     public ProductDTO() { }
 
-    public ProductDTO(Integer id, String name, int price, String category) {
+    public ProductDTO(Integer id, String name, int price, ProductCategoryDTO category) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -35,7 +35,7 @@ public class ProductDTO {
         return price;
     }
 
-    public String getCategory() {
+    public ProductCategoryDTO getCategory() {
         return category;
     }
 }

@@ -1,17 +1,21 @@
 (function () {
 
-    angular.module('app', ['ngRoute'])
+    angular.module('app', ['ngRoute', 'ngMessages'])
         .config(config)
         .controller('MainCtrl', Ctrl);
 
-    config.$inject = [];
-    function config() {
+    config.$inject = ['$routeProvider'];
+    function config($routeProvider) {
+
+        menuList.forEach(function (menu) {
+            $routeProvider.when(menu.url, menu);
+        });
 
     }
 
     Ctrl.$inject = ['$scope'];
-    function Ctrl() {
-
+    function Ctrl($scope) {
+        $scope.menuList = menuList;
     }
 
 })();

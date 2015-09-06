@@ -1,11 +1,17 @@
 package entity;
 
+import listener.TimestampEntityListener;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
+@EntityListeners(TimestampEntityListener.class)
+@Cacheable
 public class Product {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +27,13 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER)
     @NotNull(message = "product category is required")
     private ProductCategory  category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<TransactionDetail> transactonDetails;
+
+    private Date createdAt;
+
+    private Date updatedAt;
 
     public Integer getId() {
         return id;
